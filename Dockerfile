@@ -1,5 +1,9 @@
-FROM        openjdk
+FROM        python:3
 RUN         mkdir /app
 WORKDIR     /app
-COPY        shipping.jar /app
-ENTRYPOINT  ["java", "-Xmx3000m", "-jar", "/app/shipping.jar"]
+COPY        payment.ini /app
+COPY        payment.py /app
+COPY        rabbitmq.py /app
+COPY        requirements.txt /app
+RUN         pip3 install -r requirements.txt
+ENTRYPOINT  ["uwsgi", "--ini", "payment.ini"]
