@@ -10,13 +10,13 @@ pool:
 
 steps:
   - script: |
-      docker build -t 739561048503.dkr.ecr.us-east-1.amazonaws.com/shipping:latest .
+      docker build -t 739561048503.dkr.ecr.us-east-1.amazonaws.com/payment:latest .
     displayName: Docker Build
 
   - script: |
       aws ecr get-login-password --region us-east-1 | docker login --name AWS --password-stdin 739561048503.dkr.ecr.us-east-1.amazonaws.com
-      docker tag 739561048503.dkr.ecr.us-east-1.amazonaws.com/shipping:latest 739561048503.dkr.ecr.us-east-1.amazonaws.com/shipping:${BUILD_SOURCEBRANCHNAME}
-      docker push 739561048503.dkr.ecr.us-east-1.amazonaws.com/shipping:${BUILD_SOURCEBRANCHNAME}
+      docker tag 739561048503.dkr.ecr.us-east-1.amazonaws.com/payment:latest 739561048503.dkr.ecr.us-east-1.amazonaws.com/payment:${BUILD_SOURCEBRANCHNAME}
+      docker push 739561048503.dkr.ecr.us-east-1.amazonaws.com/payment:${BUILD_SOURCEBRANCHNAME}
     displayName: Push Docker Image
     condition: contains(variables['Build.SourceBranch'], 'refs/tags')
 
