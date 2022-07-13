@@ -1,0 +1,24 @@
+component:
+  name: payment
+  version: 4.0.0
+configMap:
+  create: yes
+  name: payment
+  data:
+    CART_HOST: cart
+    CART_PORT: 8080
+    USER_HOST: user
+    USER_PORT: 8080
+    AMQP_HOST: rabbitmq
+secret:
+  enabled: yes
+  name: roboshop
+service:
+  containerPort: 8080
+resources:
+  limits:
+    cpu: 1200m
+    memory: 3100Mi
+  requests:
+    cpu: 1000m
+    memory: 3100Mi
